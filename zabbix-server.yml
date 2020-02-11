@@ -1,0 +1,11 @@
+- name: ZAbbix server installation
+  hosts: master
+  become: yes
+  vars_files:
+      - varss.yml
+  roles:
+      - role: geerlingguy.apache
+      - role: dj-wasabi.zabbix-server
+      - role: dj-wasabi.zabbix-web
+        zabbix_url: "{{ master_ip }}"
+

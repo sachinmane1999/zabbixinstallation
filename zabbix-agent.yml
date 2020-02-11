@@ -1,0 +1,16 @@
+---
+- name: Zabbix agent
+  hosts: all
+  become: yes
+  vars_files:
+    - varss.yml
+  ignore_errors: yes
+  pre_tasks:
+          - name: IP of master
+            debug:
+                msg: "{{master_ip}}"
+  roles:
+          - role: dj-wasabi.zabbix-agent
+            zabbix_agent_server: "{{ master_ip }}"
+            zabbix_agent_serveractive: "{{ master_ip }}"
+
